@@ -6,7 +6,12 @@ import {
   FormBuilder,
   AbstractControl,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { noop, tap } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { AppState } from 'src/app/store';
+import { login } from '../store/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +23,12 @@ export class LoginComponent implements OnInit {
   emailControl!: FormControl;
   passwordControl!: FormControl;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private store: Store<AppState>
+  ) {}
 
   ngOnInit(): void {
     this.initFormControls();
@@ -60,5 +70,22 @@ export class LoginComponent implements OnInit {
     this.authService.login(email, password).subscribe((res) => {
       console.log(res);
     });
+  }
+
+  login(): void {
+    const { email, password } = this.loginForm.value;
+
+    this.authService
+      .login(email, password)
+      .pipe(
+        tap((user) => {
+          console.log(user);
+
+          this.store.dispatch(login({ token: user }));
+
+          this.router.navigateByUrl('/admin');
+        })
+      )
+      .subscribe(noop, () => alert('Login failed'));
   }
 }
