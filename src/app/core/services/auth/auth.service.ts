@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user.model';
 
-export interface IToken {
-  access_token: string;
-}
+// export interface IToken {
+//   access_token: string;
+// }
 
 @Injectable({
   providedIn: 'root',
@@ -25,8 +25,8 @@ export class AuthService {
   //   return this.http.post(this.baseUrl, credentials, { responseType: 'text' });
   // }
 
-  login(email: string, password: string): Observable<IToken> {
-    return this.http.post<IToken>('http://localhost:8888/auth/login', {
+  login(email: string, password: string): Observable<User> {
+    return this.http.post<User>('http://localhost:8888/auth/login', {
       email,
       password,
     });

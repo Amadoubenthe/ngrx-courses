@@ -11,7 +11,8 @@ import { Store } from '@ngrx/store';
 import { noop, tap } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { AppState } from 'src/app/store';
-import { login } from '../store/auth.actions';
+import { User } from 'src/app/core/models/user.model';
+import { AuthActions } from '../store/action.types';
 
 @Component({
   selector: 'app-login',
@@ -64,24 +65,14 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onSubmit(): void {
-    console.log(this.loginForm.value);
-    const { email, password } = this.loginForm.value;
-    this.authService.login(email, password).subscribe((res) => {
-      console.log(res);
-    });
-  }
-
   login(): void {
     const { email, password } = this.loginForm.value;
 
     this.authService
       .login(email, password)
       .pipe(
-        tap((user) => {
-          console.log(user);
-
-          this.store.dispatch(login({ token: user }));
+        tap((user: User) => {
+          this.store.dispatch(AuthActions.login({ user: user }));
 
           this.router.navigateByUrl('/admin');
         })

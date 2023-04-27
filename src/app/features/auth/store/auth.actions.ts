@@ -1,8 +1,9 @@
 import { createAction, props } from '@ngrx/store';
-import { IToken } from '../../../core/services/auth/auth.service';
-// import { IToken } from 'src/app/core/services/auth/auth.service';
+import { User } from 'src/app/core/models/user.model';
 
 export const login = createAction(
   '[Login Component] User Login',
-  props<{ token: IToken }>()
+  props<{ user: User }>()
 );
+
+export const logout = createAction('[Logout Component] User Logout');
