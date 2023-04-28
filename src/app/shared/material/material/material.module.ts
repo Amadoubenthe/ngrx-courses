@@ -8,6 +8,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const materialModules = [
   MatCardModule,
@@ -18,6 +21,9 @@ const materialModules = [
   MatSidenavModule,
   MatSelectModule,
   MatListModule,
+  MatTabsModule,
+  MatTableModule,
+  MatPaginatorModule,
 ];
 
 @NgModule({
