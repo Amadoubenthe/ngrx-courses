@@ -9,7 +9,8 @@
 mat-list {
   padding-top: 50px;
 }
-.list-content {
-  cursor: pointer;
-  background-color: aqua;
+
+mat-list-item:hover {
+  background: rgb(209, 206, 206);
+  cursor: pointer !important;
 }

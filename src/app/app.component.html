@@ -1,17 +1,17 @@
 <mat-drawer-container class="example-container">
   <mat-drawer mode="over" [opened]="isOpen">
     <mat-list role="list">
-      <a class="list-content">
-        <mat-list-item role="listitem"
-          ><mat-icon matListItemIcon>people</mat-icon>
-          <div matListItemTitle>People</div></mat-list-item
-        >
-      </a>
       <mat-list-item role="listitem"
+        ><mat-icon matListItemIcon>people</mat-icon>
+        <div matListItemTitle>People</div></mat-list-item
+      >
+
+      <mat-list-item *ngIf="isLoggedIn$ | async" role="listitem"
         ><mat-icon matListItemIcon>logout</mat-icon>
         <div matListItemTitle>Logout</div></mat-list-item
       >
-      <mat-list-item role="listitem"
+
+      <mat-list-item *ngIf="isLoggedOut$ | async" role="listitem"
         ><mat-icon matListItemIcon>login</mat-icon>
         <div matListItemTitle>Login</div></mat-list-item
       >
