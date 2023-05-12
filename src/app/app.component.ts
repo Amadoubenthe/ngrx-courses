@@ -6,6 +6,7 @@ import {
   selectIsLoggedOut,
 } from './features/auth/store/auth.selectors';
 import { AuthState } from './features/auth/store/auth.reducer';
+import { AuthActions } from './features/auth/store/action.types';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<AuthState>) {}
 
   ngOnInit(): void {
+    // this.getUserLocalstorage();
     this.isOpen = false;
     this.getStore();
   }
