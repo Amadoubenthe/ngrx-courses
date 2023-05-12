@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { authReducers } from './store/auth.reducer';
 import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/auth.effects';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -15,7 +16,7 @@ import { EffectsModule } from '@ngrx/effects';
     AuthRoutingModule,
     SharedModule,
     StoreModule.forFeature('auth', authReducers),
-    EffectsModule.forFeature([]),
+    EffectsModule.forFeature([AuthEffects]),
   ],
 })
 export class AuthModule {}
