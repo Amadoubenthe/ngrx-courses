@@ -7,6 +7,7 @@ import {
 } from './features/auth/store/auth.selectors';
 import { AuthState } from './features/auth/store/auth.reducer';
 import { AuthActions } from './features/auth/store/action.types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -18,10 +19,20 @@ export class AppComponent implements OnInit {
   isLoggedIn$!: Observable<boolean>;
   isLoggedOut$!: Observable<boolean>;
 
-  constructor(private store: Store<AuthState>) {}
+  constructor(private store: Store<AuthState>, private router: Router) {}
 
   ngOnInit(): void {
-    // this.getUserLocalstorage();
+    const userp = localStorage.getItem('user');
+
+    console.log('Appp user ', userp);
+
+    if (userp) {
+      console.log('sssssssssssssssssssssssssssss');
+
+      this.store.dispatch(AuthActions.login({ user: JSON.parse(userp) }));
+      this.router.navigateByUrl('/admin');
+    }
+
     this.isOpen = false;
     this.getStore();
   }
