@@ -24,11 +24,9 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     const userp = localStorage.getItem('user');
 
-    console.log('Appp user ', userp);
-
     if (userp) {
-      console.log('sssssssssssssssssssssssssssss');
-
+      console.log('sssssssssssssssssssssssssssss: ' + JSON.parse(userp));
+      console.log('Appp user ', userp);
       this.store.dispatch(AuthActions.login({ user: JSON.parse(userp) }));
       this.router.navigateByUrl('/admin');
     }
